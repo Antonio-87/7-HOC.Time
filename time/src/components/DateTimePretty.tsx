@@ -2,7 +2,7 @@ import { ComponentType, useEffect, useState } from "react";
 
 const DateTimePretty = (WrappedComponent: ComponentType<{ date: string }>) => {
   return ({ date }: { date: string }) => {
-    const [formattedDate, setFormattedDtae] = useState("");
+    const [formattedDate, setFormattedDate] = useState("");
 
     useEffect(() => {
       formatDate(date);
@@ -18,7 +18,7 @@ const DateTimePretty = (WrappedComponent: ComponentType<{ date: string }>) => {
           : differenceTime > 1440
             ? `${Math.floor(differenceTime / 1440)} часов назад`
             : `${Math.floor(differenceTime / 3600)} минут назад`;
-      setFormattedDtae(formatTime);
+      setFormattedDate(formatTime);
     };
 
     return <WrappedComponent date={formattedDate} />;
