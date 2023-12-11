@@ -11,14 +11,13 @@ const DateTimePretty = (WrappedComponent: ComponentType<{ date: string }>) => {
     const formatDate = (date: string) => {
       const endDate = new Date(date);
       const currentDate = new Date();
-      const differenceTime = currentDate.getTime() - endDate.getTime();
-      const differenceDate = new Date(differenceTime);
+      const differenceTime = (currentDate.getTime() - endDate.getTime()) / 1000;
       const formatTime =
-        differenceTime / 60000 >= 60 * 24
-          ? `${differenceDate.getDay()} дней назад`
-          : differenceTime / 60000 < 60
-            ? `${differenceDate.getHours()} часов наза`
-            : `${differenceDate.getMinutes()} минут наза`;
+        differenceTime >= 86400
+          ? `${Math.floor(differenceTime / 86400)} дней назад`
+          : differenceTime > 1440
+            ? `${Math.floor(differenceTime / 1440)} часов назад`
+            : `${Math.floor(differenceTime / 3600)} минут назад`;
       setFormattedDtae(formatTime);
     };
 
