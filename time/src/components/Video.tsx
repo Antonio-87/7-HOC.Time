@@ -1,6 +1,8 @@
 import DateTime from "./DateTime";
+import DateTimePretty from "./DateTimePretty";
 
 const Video = ({ url, date }: { url: string; date: string }) => {
+  const HencedDateTime = DateTimePretty(DateTime);
   return (
     <div className="video">
       <iframe
@@ -8,7 +10,7 @@ const Video = ({ url, date }: { url: string; date: string }) => {
         allow="autoplay; encrypted-media"
         allowFullScreen
       ></iframe>
-      <DateTime date={date} />
+      <HencedDateTime date={date} />
     </div>
   );
 };
