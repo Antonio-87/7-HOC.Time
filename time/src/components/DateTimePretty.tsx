@@ -15,9 +15,11 @@ const DateTimePretty = (WrappedComponent: ComponentType<{ date: string }>) => {
       const formatTime =
         differenceTime >= 86400
           ? `${Math.floor(differenceTime / 86400)} дней назад`
-          : differenceTime > 1440
-            ? `${Math.floor(differenceTime / 1440)} часов назад`
-            : `${Math.floor(differenceTime / 3600)} минут назад`;
+          : differenceTime > 3600
+            ? `${Math.floor(differenceTime / 3600)} часов назад`
+            : differenceTime >= 60
+              ? `${Math.floor(differenceTime / 60)} минут назад`
+              : "меньше минуты назад";
       setFormattedDate(formatTime);
     };
 
